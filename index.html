@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Diseñador Visual</title>
+    <!-- Tailwind CSS para los estilos rápidos y modernos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter para un look muy UX/UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        // Configuración de Tailwind con fondo Negro y acentos Verde Oscuro + Beige
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#282E2E',        // Negro puro de fondo principal
+                        surface: '#0E1712',     // Verde bosque oscuro para tarjetas y superficies
+                        surfaceLight: '#182B1E',// Verde oscuro para capas y estados hover
+                        forest: '#1F3A29',      // Verde bosque para bordes y acentos
+                        sage: '#98AB9D',        // Verde sabio suave para texto secundario
+                        beige: {
+                            50: '#FAF8F5',
+                            100: '#F5EFE6',     // Beige crema (Texto principal)
+                            200: '#E6DCB8',     // Beige dorado (Acentos principales y botones)
+                            300: '#D5C7A3',     // Beige medio
+                            400: '#B0A280',     // Beige apagado
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para animaciones y scrollbar */
+        body {
+            background-color: #282E2E;
+            color: #F5EFE6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scrollbar minimalista */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #182B1E;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #25422F;
+        }
+
+        /* Animaciones de entrada (Scroll reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efecto hover sutil para las tarjetas de proyecto */
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Gradiente Beige - Verde Sabio para textos destacados */
+        .text-gradient {
+            background: linear-gradient(to right, #F5EFE6, #E6DCB8, #98AB9D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-dark text-beige-100 font-sans selection:bg-beige-200 selection:text-dark flex flex-col min-h-screen">
+
+    <!-- Navegación Sticky -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-dark/90 border-b border-forest/30" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-beige-100 font-bold text-xl tracking-tighter">VIZ<span class="text-beige-200">UAL</span></a>
+                </div>
+                <!-- Menú Desktop -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#inicio" class="text-sage hover:text-beige-100 px-3 py-2 text-sm font-medium transition-colors">Inicio</a>
+                        <a href="#trabajo" class="text-sage hover:text-beige-100 px-3 py-2 text-sm font-medium transition-colors">Trabajo</a>
+                        <a href="#sobre-mi" class="text-sage hover:text-beige-100 px-3 py-2 text-sm font-medium transition-colors">Sobre Mí</a>
+                        <a href="#contacto" class="text-sage hover:text-beige-100 px-3 py-2 text-sm font-medium transition-colors">Contacto</a>
+                    </div>
+
+                </div>
+                <!-- Botón Menú Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-sage hover:text-beige-100 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú Mobile Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-beige-100/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="text-sage hover:text-beige-100 block px-3 py-2 text-base font-medium">Inicio</a>
+                <a href="#trabajo" class="text-sage hover:text-beige-100 block px-3 py-2 text-base font-medium">Trabajo</a>
+                <a href="#sobre-mi" class="text-sage hover:text-beige-100 block px-3 py-2 text-base font-medium">Sobre Mí</a>
+                <a href="#contacto" class="text-sage hover:text-beige-100 block px-3 py-2 text-base font-medium">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex flex-col flex-grow">
+        <!-- Sección Hero -->
+        <section id="inicio" class="pt-32 pb-20 md:pt-48 md:pb-32 px-6 lg:px-8 max-w-6xl mx-auto flex flex-col justify-center min-h-[90vh]">
+            <div class="max-w-3xl reveal">
+                <p class="text-sage font-medium tracking-wide uppercase text-sm mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-forest/40">
+                    <span class="w-2 h-2 rounded-full bg-beige-200"></span>
+                    Portafolio Creativo
+                </p>
+                <h1 class="text-5xl md:text-7xl font-bold text-beige-100 tracking-tight mb-6 leading-tight">
+                    Diseño visual que <br class="hidden md:block" />
+                    <span class="text-gradient">conecta y comunica.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-sage/90 mb-10 max-w-2xl leading-relaxed">
+                    Mi nombre es Camilo Alvarez. Mi objetivo es transformar ideas complejas en experiencias estéticas, minimalistas y funcionales para tu empresa, almacen o negocio.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#trabajo" class="bg-beige-200 text-dark font-semibold px-8 py-4 rounded-full hover:bg-beige-100 transition-all inline-flex items-center gap-2 shadow-lg shadow-beige-200/10">
+                        Ver Proyectos
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </a>
+                    <a href="#contacto" class="border border-forest bg-surface/50 text-beige-100 px-8 py-4 rounded-full font-medium hover:bg-surfaceLight hover:border-beige-200/40 transition-all">
+                        Hablemos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Proyectos -->
+        <section id="trabajo" class="py-24 px-6 lg:px-8 bg-surface/30 border-y border-forest/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-beige-100 mb-4">Trabajo Seleccionado</h2>
+                        <p class="text-sage">Una muestra de mis proyectos más recientes.</p>
+                    </div>
+                    
+                    <!-- Filtros UI/UX -->
+                    <div class="mt-6 md:mt-0 flex space-x-2 bg-dark p-1 rounded-full border border-forest/40">
+                        <button class="filter-btn active px-5 py-2 rounded-full text-sm font-medium bg-surfaceLight text-beige-100 border border-beige-200/20 transition-all" data-filter="all">Todos</button>
+                        <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium text-sage hover:text-beige-100 transition-all" data-filter="video">Video</button>
+                        <button class="filter-btn px-5 py-2 rounded-full text-sm font-medium text-sage hover:text-beige-100 transition-all" data-filter="imagen">Imagen</button>
+                    </div>
+                </div>
+
+                <!-- Grid de Proyectos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12" id="projects-grid">
+                    
+                    <!-- Proyecto 1 (Video) -->
+                    <article class="project-card reveal group cursor-pointer" data-category="video">
+                        <div class="relative overflow-hidden rounded-2xl bg-surface aspect-[9/16] border border-forest/40 group-hover:border-beige-200/50 transition-colors">
+                            <video src="videos/place nigth.mp4" controls preload="metadata" playsinline class="w-full h-full object-contain">
+                            </video>
+                        </div>
+                        <span class="mt-3 text-xs font-mono text-beige-300/80 uppercase tracking-wider block">Video / Motion</span>
+                    </article>
+
+                    <!-- Proyecto 2 (Video) -->
+                    <article class="project-card reveal group cursor-pointer" data-category="video">
+                        <div class="relative overflow-hidden rounded-2xl bg-surface aspect-[9/16] border border-forest/40 group-hover:border-beige-200/50 transition-colors">
+                            <video src="videos/estilo de vida.mp4" controls preload="metadata" playsinline class="w-full h-full object-contain">
+                            </video>
+                        </div>
+                        <span class="mt-3 text-xs font-mono text-beige-300/80 uppercase tracking-wider block">Video / Motion</span>
+                    </article>
+
+                    <!-- Proyecto 3 (Video) -->
+                    <article class="project-card reveal group cursor-pointer md:col-span-2" data-category="video">
+                        <div class="relative overflow-hidden rounded-2xl bg-surface aspect-[16/9] border border-forest/40 group-hover:border-beige-200/50 transition-colors">
+                            <video src="https://files.catbox.moe/gluew8.mp4" controls preload="metadata" playsinline class="w-full h-full object-contain">
+                            </video>
+                        </div>
+                        <span class="mt-3 text-xs font-mono text-beige-300/80 uppercase tracking-wider block">Video / Motion</span>
+                    </article>
+
+                    <!-- Proyecto 2 (Imagen) -->
+                    <article class="project-card reveal group cursor-pointer grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-center gap-6" data-category="imagen">
+                        <div class="relative overflow-hidden rounded-2xl bg-surface aspect-[4/3] border border-forest/40 group-hover:border-beige-200/50 transition-colors">
+                            <img src="" alt="Proyecto Imagen" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-mono text-beige-300/80 uppercase tracking-wider mb-2 block">Imagen / UI Design</span>
+                                <h3 class="text-xl font-semibold text-beige-100 group-hover:text-beige-200 transition-colors">Sistema de Diseño Fintech</h3>
+                                <p class="text-sage mt-2 text-sm">Creación de componentes visuales y dirección fotográfica corporativa.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-stretch">
+        <!-- Sección Sobre Mí -->
+        <section id="sobre-mi" class="py-24 px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 gap-16 items-center reveal">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-3xl md:text-4xl font-bold text-beige-100 mb-6">Enfoque y Filosofía</h2>
+                    <p class="text-sage mb-4 leading-relaxed">
+                        Creo firmemente que el diseño no es solo decoración, es comunicación. Ya sea editando un video de un minuto o componiendo una imagen estática, mi objetivo es guiar el ojo del espectador y contar una historia clara.
+                    </p>
+                <div class="order-1 md:order-2 relative">
+                    <!-- Decoración abstracta minimalista en verde bosque y beige -->
+                    <div class="aspect-square rounded-full bg-gradient-to-tr from-surface via-surfaceLight to-dark border border-forest/50 relative overflow-hidden flex items-center justify-center shadow-2xl">
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-beige-200/10 via-transparent to-transparent"></div>
+                        <img src="perfil.jpg" alt="Sobre mi" ">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="py-12 px-4 lg:px-6 w-full flex items-center">
+            <div class="max-w-4xl mx-auto text-center reveal bg-surface/30 border border-forest/30 rounded-2xl p-8 md:p-10">
+                <h2 class="text-4xl md:text-5xl font-bold text-beige-100 mb-6">¿Tienes un proyecto en mente?</h2>
+                <p class="text-xl text-sage mb-10">Creemos algo increíble juntos. Estoy disponible para trabajo freelance y colaboraciones creativas.</p>
+                
+
+                <div class="hidden">
+                    <!-- Iconos sociales -->
+                    <a href="314 646 2286" class="text-sage hover:text-beige-200 transition-colors" aria-label="Behance">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h2.027c2.518 0 2.508-3.576.01-3.576h-2.037v3.576zm0 6.038h2.639c3.111 0 3.182-4.045.014-4.045h-2.653v4.045z"/></svg>
+                    </a>
+
+                    <a href="ra.m1lo" class="text-sage hover:text-beige-200 transition-colors" aria-label="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+
+                <div class="mt-10 flex flex-col items-center gap-4 text-sage">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-7 h-7 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.93 9.93 0 0 0-8.5 15.07L2 22l5.1-1.34A10 10 0 1 0 12.04 2Zm0 18.18a8.15 8.15 0 0 1-4.16-1.14l-.3-.18-3.03.8.81-2.95-.2-.31a8.16 8.16 0 1 1 6.88 3.78Zm4.48-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.25-1.5-1.4-1.75-.15-.25-.02-.39.11-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12 0 1.25.91 2.46 1.04 2.63.13.17 1.79 2.73 4.33 3.83.61.26 1.08.42 1.45.54.61.19 1.16.16 1.6.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.16-.48-.29Z"/></svg>
+                        <span>+57 314 646 2286</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-7 h-7 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                        <span>@ra.m1lo</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-beige-100/10 py-8 text-center text-sage/70 text-sm">
+        <p>&copy; <span id="year"></span> Diseñador Visual.</p>
+    </footer>
+
+    <!-- Lógica de Interacciones (JavaScript) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Lógica del Menú Mobile
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            // Cerrar menú al hacer click en un enlace
+            const mobileLinks = menu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+
+            // Pausar los otros videos cuando se reproduce uno
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.addEventListener('play', () => {
+                    videos.forEach(otherVideo => {
+                        if (otherVideo !== video) {
+                            otherVideo.pause();
+                        }
+                    });
+                });
+            });
+
+            // 2. Establecer año actual en el footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 3. Scroll Reveal Animation (Intersection Observer)
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // 4. Lógica de Filtro de Proyectos
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projects = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Actualizar estilos de botones con superficie verde y bordes beige
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-surfaceLight', 'text-beige-100', 'border', 'border-beige-200/20');
+                        b.classList.add('text-sage');
+                    });
+                    btn.classList.remove('text-sage');
+                    btn.classList.add('bg-surfaceLight', 'text-beige-100', 'border', 'border-beige-200/20');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Filtrar proyectos
+                    projects.forEach(project => {
+                        project.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        project.style.opacity = '0';
+                        project.style.transform = 'scale(0.95)';
+                        
+                        setTimeout(() => {
+                            if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
+                                project.style.display = 'block';
+                                setTimeout(() => {
+                                    project.style.opacity = '1';
+                                    project.style.transform = 'scale(1)';
+                                }, 50);
+                            } else {
+                                project.style.display = 'none';
+                            }
+                        }, 400);
+                    });
+                });
+            });
+
+            });
+    </script>
+</body>
+</html>
