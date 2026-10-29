@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Videos y proyectos de motion de Camilo Alvarez.">
+    <title>Videos | Portafolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #282E2E;
+            color: #F5EFE6;
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="border-b border-[#1F3A29]/50 bg-[#282E2E]/90">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+            <a href="index.html" class="text-xl font-bold tracking-tight text-[#F5EFE6]">VIZ<span class="text-[#E6DCB8]">UAL</span></a>
+            <a href="index.html#trabajo" class="text-sm font-medium text-[#E6DCB8] transition-colors hover:text-[#F5EFE6]">Volver al portafolio</a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
+        <div class="mb-10">
+            <p class="text-sm font-medium uppercase tracking-wider text-[#98AB9D]">Portafolio creativo</p>
+            <h1 class="mt-2 text-4xl font-bold tracking-tight md:text-5xl">Videos</h1>
+            <p class="mt-4 text-[#98AB9D]">Proyectos de video y motion.</p>
+        </div>
+
+        <section class="mb-16" aria-labelledby="verticales">
+            <h2 id="verticales" class="mb-6 text-2xl font-semibold">Videos verticales</h2>
+            <div class="grid grid-cols-1 items-start gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <article>
+                    <video src="videos/video1.mp4" controls preload="metadata" playsinline class="block h-auto max-h-[75vh] w-full rounded-2xl border border-[#1F3A29]/60 bg-[#0E1712] object-contain" aria-label="Video vertical de proyecto 1"></video>
+                    <p class="mt-3 text-xs uppercase tracking-wider text-[#D5C7A3]">Video / Motion</p>
+                </article>
+                <article>
+                    <video src="videos/video2.mp4" controls preload="metadata" playsinline class="block h-auto max-h-[75vh] w-full rounded-2xl border border-[#1F3A29]/60 bg-[#0E1712] object-contain" aria-label="Video vertical de proyecto 2"></video>
+                    <p class="mt-3 text-xs uppercase tracking-wider text-[#D5C7A3]">Video / Motion</p>
+                </article>
+                <article>
+                    <video src="videos/video5.mp4" controls preload="metadata" playsinline class="block h-auto max-h-[75vh] w-full rounded-2xl border border-[#1F3A29]/60 bg-[#0E1712] object-contain" aria-label="Video vertical de proyecto 5"></video>
+                    <p class="mt-3 text-xs uppercase tracking-wider text-[#D5C7A3]">Video / Motion</p>
+                </article>
+                <article>
+                    <video src="videos/video6.mp4" controls preload="metadata" playsinline class="block h-auto max-h-[75vh] w-full rounded-2xl border border-[#1F3A29]/60 bg-[#0E1712] object-contain" aria-label="Video vertical de proyecto 6"></video>
+                    <p class="mt-3 text-xs uppercase tracking-wider text-[#D5C7A3]">Video / Motion</p>
+                </article>
+                <article>
+                    <video src="videos/video7.mp4" controls preload="metadata" playsinline class="block h-auto max-h-[75vh] w-full rounded-2xl border border-[#1F3A29]/60 bg-[#0E1712] object-contain" aria-label="Video vertical de proyecto 7"></video>
+                    <p class="mt-3 text-xs uppercase tracking-wider text-[#D5C7A3]">Video / Motion</p>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="horizontales">
+            <h2 id="horizontales" class="mb-6 text-2xl font-semibold">Videos horizontales</h2>
+            <div class="grid grid-cols-1 gap-8">
+                <article class="mx-auto w-full max-w-4xl">
+                    <video src="https://files.catbox.moe/gluew8.mp4" controls preload="metadata" playsinline class="block h-auto max-h-[75vh] w-full rounded-2xl border border-[#1F3A29]/60 bg-[#0E1712] object-contain" aria-label="Video horizontal de proyecto 3"></video>
+                    <p class="mt-3 text-xs uppercase tracking-wider text-[#D5C7A3]">Video / Motion</p>
+                </article>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
